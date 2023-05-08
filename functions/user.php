@@ -7,7 +7,7 @@ function cek_data($username, $password)
     foreach ($data3 as $row) :
         if ($row["username"] == $username && $row["password"] == $password) {
 
-require_once "/opt/lampp/htdocs/mine/core/init.php";
+require_once "core/init.php";
 
 function register_user($name, $email, $username, $password)
 {
@@ -27,42 +27,7 @@ function register_user($name, $email, $username, $password)
     }
 };
 
-// function register_cek_email($email)
-// {
-//     global $conn;
-//     $email = mysqli_real_escape_string($conn, $email);
-
-//     $query = "SELECT * FROM customer WHERE email = '$email'";
-
-//     if ( $result = mysqli_query($conn, $query) ){
-//         if (mysqli_num_rows($result) == 0) return true;
-//         else return false;
-//     }
-// };
-
 function cek_data($username, $password){
-    // global $conn;
-    // $username = mysqli_real_escape_string($conn, $username);
-    // $password = mysqli_real_escape_string($conn, $password);
-
-    // $query = "SELECT password FROM customer WHERE username = '$username'";
-
-    // $result = mysqli_query($conn, $query);
-    // $hash = mysqli_fetch_assoc($result)['password'];
-
-    // if (password_verify($password, $hash)){
-    //     $_SESSION['user'] = $username;
-    //     header('Location: dashboard.php');
-    // }else{
-    //     die("Password verification failed");
-    // }
-
-    // $query = "SELECT * FROM customer WHERE username = '$username'";
-
-    // if ( $result = mysqli_query($conn, $query) ){
-    //     if (mysqli_num_rows($result) == 0) return true;
-    //     else return false;
-    // }
     global $data3;
 
     foreach($data3 as $row):
@@ -124,7 +89,7 @@ class firebaseRDB
         return $grab;
     }
 }
-=======
+
 function login_cek_email($username){
     global $conn;
     $username = mysqli_real_escape_string($conn, $username);
@@ -137,3 +102,4 @@ function login_cek_email($username){
         return false;
     }
 };
+        }
