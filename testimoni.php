@@ -12,9 +12,7 @@ $i = 0;
         <div class="testimonial">
             <?php $data2 = array_reverse($data2); 
             foreach ($data2 as $row) :
-                    if ($i < 3) { ?>
-            <?php foreach ($data2 as $row) : ?>
-                <?php if ($i < 3) { ?>
+                if ($i < 3) { ?>
                     <div class="card my-4">
                         <div class="row">
                             <div class="col-md-8">
@@ -30,8 +28,6 @@ $i = 0;
                 <?php $i++;
                 } 
             endforeach; ?>
-                } ?>
-            <?php endforeach; ?>
         </div>
     </div>
 </div>
