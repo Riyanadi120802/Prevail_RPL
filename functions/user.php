@@ -1,37 +1,11 @@
 <?php
 // cek data login
-function cek_data($username, $password)
-{
+require_once "/core/init.php";
+function cek_data ($username, $password){
     global $data3;
 
     foreach ($data3 as $row) :
         if ($row["username"] == $username && $row["password"] == $password) {
-
-require_once "core/init.php";
-
-function register_user($name, $email, $username, $password)
-{
-    global $conn;
-    
-    $name = mysqli_real_escape_string($conn, $name);
-    $email = mysqli_real_escape_string($conn, $email);
-    $username = mysqli_real_escape_string($conn, $username);
-
-    $password = password_hash($password, PASSWORD_DEFAULT);
-    $query = "INSERT INTO customer VALUES ('0','$name','$email','$username','$password')";
-
-    if (mysqli_query($conn, $query)) {
-        return true;
-    } else {
-        return false;
-    }
-};
-
-function cek_data($username, $password){
-    global $data3;
-
-    foreach($data3 as $row):
-        if ( $row["username"] == $username && $row["password"] == $password){
             $_SESSION['user'] = $username;
             return header('Location: dashboard.php');
         }
@@ -89,17 +63,3 @@ class firebaseRDB
         return $grab;
     }
 }
-
-function login_cek_email($username){
-    global $conn;
-    $username = mysqli_real_escape_string($conn, $username);
-
-    $query = "SELECT email FROM customer WHERE username = '$username'";
-
-    if ($result = mysqli_query($conn, $query)) {
-        if (mysqli_num_rows($result) != 0) return true;
-    } else { 
-        return false;
-    }
-};
-        }
