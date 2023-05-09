@@ -2,29 +2,43 @@
 require_once "core/init.php";
 
 require_once "view/headeradmin.php";
+
+if (isset($_POST['submit'])) {
+  $db = new firebaseRDB($databaseURL);
+  $jenis_layanan = $_POST['jenis_layanan'];
+  $jumlah = $_POST['jumlah'];
+  $upload_dokumen = $_POST['upload_dokumen'];
+  $id = $_SESSION['user'];
+
+  $insert = $db->insert("status", [
+    'jenis_layanan' => $jenis_layanan,
+    'jumlah' => $jumlah,
+    'upload_dokumen' => $upload_dokumen,
+    'id' => $id
+  ]);
+}
 ?>
 
-<!-- Jarak -->
 <section class="dashboard">
   <div class="dash-content">
     <header style="font-size: 26px; font-weight: bold; color: blueviolet; ">Order Here</header>
-    <form action="#">
+    <form action="order.php" method="post">
       <div class="form first">
         <div class="details personal">
           <div class="fields">
 
             <div class="input-field">
               <label>Jenis Layanan</label>
-                <select class="form-select" id="jenis_layanan" name="jenis_layanan" required>
-                  <?php foreach ($data1 as $row) : ?>
-                    <option value="<?= $row['namaLayanan'] ?>"><span class="text card-title"><?= $row['namaLayanan'] ?></span></option>
-                  <?php endforeach; ?>
-                </select>
+              <select class="form-select" id="jenis_layanan" name="jenis_layanan" required>
+                <?php foreach ($data1 as $row) : ?>
+                  <option value="<?= $row['namaLayanan'] ?>"><span class="text card-title"><?= $row['namaLayanan'] ?></span></option>
+                <?php endforeach; ?>
+              </select>
             </div>
 
             <div class="input-field">
               <label>Jumlah</label>
-              <input type="number" placeholder="Masukkan Jumlah" required />
+              <input type="number" placeholder="Masukkan Jumlah" name="jumlah" required />
             </div>
 
             <div class="input-field" id="khas">
@@ -34,102 +48,26 @@ require_once "view/headeradmin.php";
           </div>
         </div>
 
-        <button class="nextBtn">
+        <!-- <button type="submit" name="submit" class="nextBtn">
           <span class="btnText">Next</span>
           <i class="uil uil-navigator"></i>
-        </button>
-      </div>
-
-      <div class="form second">
-        <div class="details address">
-          <span class="title">Address Details</span>
-
-          <div class="fields">
-            <div class="input-field">
-              <label>Address Type</label>
-              <input type="text" placeholder="Permanent or Temporary" required />
-            </div>
-
-            <div class="input-field">
-              <label>Nationality</label>
-              <input type="text" placeholder="Enter nationality" required />
-            </div>
-
-            <div class="input-field">
-              <label>State</label>
-              <input type="text" placeholder="Enter your state" required />
-            </div>
-
-            <div class="input-field">
-              <label>District</label>
-              <input type="text" placeholder="Enter your district" required />
-            </div>
-
-            <div class="input-field">
-              <label>Block Number</label>
-              <input type="number" placeholder="Enter block number" required />
-            </div>
-
-            <div class="input-field">
-              <label>Ward Number</label>
-              <input type="number" placeholder="Enter ward number" required />
-            </div>
-          </div>
-        </div>
-
-        <div class="details family">
-          <span class="title">Family Details</span>
-
-          <div class="fields">
-            <div class="input-field">
-              <label>Father Name</label>
-              <input type="text" placeholder="Enter father name" required />
-            </div>
-
-            <div class="input-field">
-              <label>Mother Name</label>
-              <input type="text" placeholder="Enter mother name" required />
-            </div>
-
-            <div class="input-field">
-              <label>Grandfather</label>
-              <input type="text" placeholder="Enter grandfther name" required />
-            </div>
-
-            <div class="input-field">
-              <label>Spouse Name</label>
-              <input type="text" placeholder="Enter spouse name" required />
-            </div>
-
-            <div class="input-field">
-              <label>Father in Law</label>
-              <input type="text" placeholder="Father in law name" required />
-            </div>
-
-            <div class="input-field">
-              <label>Mother in Law</label>
-              <input type="text" placeholder="Mother in law name" required />
-            </div>
-          </div>
-
-          <div class="buttons">
-            <div class="backBtn">
-              <i class="uil uil-navigator"></i>
-              <span class="btnText">Back</span>
-            </div>
-
-            <button class="sumbit">
-              <span class="btnText">Submit</span>
-              <i class="uil uil-navigator"></i>
-            </button>
+        </button> -->
+        <p>
+          <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Link with href
+          </a>
+          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Button with data-bs-target
+          </button>
+        </p>
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body">
+            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
           </div>
         </div>
       </div>
+
     </form>
   </div>
 </section>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../js/script.js"></script>
-</body>
-
-</html>
+<?php include_once "view/footer.php" ?>

@@ -24,18 +24,6 @@ require_once "view/headeradmin.php";
                             <td>Ovo</td>
                             <td><div class="status">working</div></td>
                         </tr>
-                        <tr>
-                            <th scope="row">Kalender</th>
-                            <td>Rp.200000</td>
-                            <td>Ovo</td>
-                            <td><div class="status">working</div></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Kartu Nama</th>
-                            <td>Rp.75000</td>
-                            <td>Ovo</td>
-                            <td><div class="status">working</div></td>
-                        </tr>
                     </tbody>
                 </table>
             </div>

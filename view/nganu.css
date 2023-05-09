@@ -65,3 +65,9 @@ nav{
     color: white;
     font-weight: bold;
 }
+
+footer p{
+        width: 159vh;
+    position: absolute;
+    bottom: 0;
+}
