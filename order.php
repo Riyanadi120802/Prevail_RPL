@@ -11,29 +11,6 @@ require_once "view/headeradmin.php";
           <div class="form first">
             <div class="details personal">
               <div class="fields">
-                <div class="input-field">
-                  <label>Nama</label>
-                  <input
-                    type="text"
-                    placeholder="Masukkan Nama Anda"
-                    required />
-                </div>
-
-                <div class="input-field">
-                  <label>Alamat</label>
-                  <input
-                    type="text"
-                    placeholder="Masukkan Alamat Anda"
-                    required />
-                </div>
-
-                <div class="input-field">
-                  <label>No Handphone / WA</label>
-                  <input
-                    type="number"
-                    placeholder="Masukkan No Handphone"
-                    required />
-                </div>
 
                 <div class="input-field">
                   <label>Jenis Layanan</label>
