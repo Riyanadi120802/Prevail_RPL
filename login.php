@@ -27,7 +27,7 @@ require_once "view/header.php";
             <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
         </div>
         <div class="form-group input-group" id="login-btn">
-            <input type="submit" class="form-control btn-info" name="submit" id="submit" placeholder="SUBMIT">
+            <input type="submit" class="form-control btn-info" name="submit" id="submit" placeholder="Log In">
         </div>
         <div>
             <center>Belum Punya Akun? <a href="register.php">Daftar</a></center>
