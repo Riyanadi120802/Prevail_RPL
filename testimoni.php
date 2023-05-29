@@ -10,7 +10,7 @@ $i = 0;
 <div class="col mt-3" id="testimonial">
     <div class="row">
         <div class="testimonial">
-            <?php $data2 = array_reverse($data2); 
+            <?php $data2 = array_reverse($data2);
             foreach ($data2 as $row) :
                 if ($i < 3) { ?>
                     <div class="card my-4">
@@ -25,8 +25,8 @@ $i = 0;
                             </div>
                         </div>
                     </div>
-                <?php $i++;
-                } 
+            <?php $i++;
+                }
             endforeach; ?>
         </div>
     </div>
