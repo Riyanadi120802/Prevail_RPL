@@ -42,7 +42,7 @@
     function uploadImage() {
         const ref = firebase.storage().ref("dokumen_pelanggan/");
         const file = document.querySelector("#photo").files[0];
-        const name = + new Date() + " - " + file.name;
+        const name = + new Date() + " - Pelanggan " + file.name;
         const metadata = {
             contentType: file.type
         };
