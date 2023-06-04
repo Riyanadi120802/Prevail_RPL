@@ -36,7 +36,7 @@ require_once "view/headeradmin.php";
 
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Launch demo modal
+          lanjut
         </button>
 
       </div>
@@ -49,15 +49,38 @@ require_once "view/headeradmin.php";
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Checkout Barang</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+      <table class="table table-hover w-50 m-auto mt-5">
+            <thead>
+                <tr class="table table-light">
+                    <th scope="col">Produk</th>
+                    <th scope="col">Harga Satuan</th>
+                    <th scope="col">Kuantitas</th>
+                    <th scope="col">Total Harga</th>
+                    <th scope="col">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            <?php for ($i=0; $i <3 ; $i++): ?>
+              <tr>
+                <th scope="row">Brosur</th>
+                <td>Rp.6000</td>
+                <td><input type="number"></td>
+                <td>Rp.30000</td>
+                <td><button class="btn btn-danger">hapus</button></td>
+              </tr>
+            <?php endfor ?>
+                
+            </tbody>
+        </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">pesan lagi</button>
+        <button type="button" class="btn btn-primary">checkout</button>
       </div>
     </div>
   </div>
@@ -68,5 +91,4 @@ require_once "view/headeradmin.php";
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
 <script src="../js/script.js"></script>
 </body>
-
 </html>
