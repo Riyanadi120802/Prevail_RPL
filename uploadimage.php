@@ -17,8 +17,7 @@
 </head>
 
 <body>
-    <input type="file" id="photo" /></br>
-    <button id="upload" onshow="uploadImage()">Upload Image</button>
+    <input type="file" id="photo" onchange="uploadImage()" /></br>
 </body>
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
@@ -42,7 +41,7 @@
     function uploadImage() {
         const ref = firebase.storage().ref("dokumen_pelanggan/");
         const file = document.querySelector("#photo").files[0];
-        const name = + new Date() + " - Pelanggan " + file.name;
+        const name = +new Date() + " - Pelanggan " + file.name;
         const metadata = {
             contentType: file.type
         };
@@ -56,7 +55,7 @@
             })
             .catch(console.error);
     }
-    
+
     const errorMsgElement = document.querySelector('span#errorMsg');
 </script>
 

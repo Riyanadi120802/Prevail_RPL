@@ -49,7 +49,7 @@ if (isset($_POST['submit'])) {
 
             <div class="input-field" id="khas">
               <label for="upload_dokumen" class="form-label">Upload Dokumen</label>
-              <input type="file" class="upload" id="upload_dokumen photo" name="uploadDokumen" onchange="uploadImage()" required />
+              <input onchange="uploadImage()" type="file" class="upload" id="photo" name="uploadDokumen" required />
             </div>
           </div>
         </div>
@@ -141,7 +141,7 @@ if (isset($_POST['submit'])) {
   function uploadImage() {
     const ref = firebase.storage().ref("dokumen_pelanggan/");
     const file = document.querySelector("#photo").files[0];
-    const name = + file.name;
+    const name = +file.name;
     const metadata = {
       contentType: file.type
     };
