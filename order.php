@@ -33,61 +33,16 @@ require_once "view/headeradmin.php";
           </div>
         </div>
 
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          lanjut
-        </button>
-
+            <button class="nextBtn">
+              <span class="btnText">Next</span>
+              <i class="uil uil-navigator"></i>
+            </button>
+          </div>
+          
+        </form>
       </div>
-    </form>
-  </div>
-</section>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Checkout Barang</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <table class="table table-hover w-50 m-auto mt-5">
-            <thead>
-                <tr class="table table-light">
-                    <th scope="col">Produk</th>
-                    <th scope="col">Harga Satuan</th>
-                    <th scope="col">Kuantitas</th>
-                    <th scope="col">Total Harga</th>
-                    <th scope="col">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-
-            <?php for ($i=0; $i <3 ; $i++): ?>
-              <tr>
-                <th scope="row">Brosur</th>
-                <td>Rp.6000</td>
-                <td><center><p>6</p></center></td>
-                <td>Rp.30000</td>
-                <td><button class="btn btn-danger">hapus</button></td>
-              </tr>
-            <?php endfor ?>
-                
-            </tbody>
-        </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">pesan lagi</button>
-        <button type="button" class="btn btn-primary">checkout</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
-<script src="../js/script.js"></script>
-</body>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/script.js"></script>
+  </body>
 </html>
