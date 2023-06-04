@@ -4,12 +4,7 @@
 <head>
     <title>Firebase Image Upload using HTML and JavaScript</title>
     <style>
-        #photo {
-            margin-top: 200px;
-            margin-left: 450px;
-        }
-
-        #upload {
+        body {
             margin-top: 20px;
             margin-left: 450px;
         }
@@ -17,7 +12,10 @@
 </head>
 
 <body>
-    <input type="file" id="photo" onchange="uploadImage()" /></br>
+    <input type="file" id="photo" onchange="uploadImage()" accept="image/jpeg, image/png" /><br>
+    <progress id="progressBar" value="0" max="100" style="width:300px;"></progress>
+    <h3 id="status"></h3>
+    <p id="loaded_n_total"></p>
 </body>
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
@@ -41,20 +39,40 @@
     function uploadImage() {
         const ref = firebase.storage().ref("dokumen_pelanggan/");
         const file = document.querySelector("#photo").files[0];
-        const name = +new Date() + " - Pelanggan " + file.name;
+        const name = file.name;
         const metadata = {
-            contentType: file.type
+            contentType: "image/jpeg"
         };
         const task = ref.child(name).put(file, metadata);
         task
-            .then(snapshot => snapshot.ref.getDownloadURL())
-            .then(url => {
-                console.log(url);
-                alert('image uploaded successfully');
-                document.querySelector("#image").src = url;
-            })
-            .catch(console.error);
+            .then(function(snapshot) {
+                document.getElementById("loaded_n_total").innerHTML = "";
+                document.getElementById("status").innerHTML = "Uploaded";
+                var url = snapshot.ref.getDownloadURL();
+            });
+
+        task.on('state_changed', function(snapshot) {
+            // Observe state change events such as progress, pause, and resume
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            document.getElementById("progressBar").value = Math.round(progress);
+            document.getElementById("loaded_n_total").innerHTML = Math.round(progress) + "% uploaded...please wait ";
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                    console.log('Upload is paused');
+                    break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                    console.log('Upload is running');
+                    break;
+            }
+        }, function(error) {
+            // Handle unsuccessful uploads
+        }, function() {
+            // Handle successful uploads on complete
+            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        });
     }
+
 
     const errorMsgElement = document.querySelector('span#errorMsg');
 </script>
