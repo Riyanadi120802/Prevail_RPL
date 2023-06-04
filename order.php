@@ -15,11 +15,10 @@ require_once "view/headeradmin.php";
             <div class="input-field">
               <label>Jenis Layanan</label>
               <select class="form-select" id="jenis_layanan" name="jenis_layanan" required>
-                <option value="">Pilih Jenis Layanan</option>
-                <option value="brosur">Brosur</option>
-                <option value="mmt">MMT</option>
-                <option value="kop_surat">Kop Surat</option>
-              </select>
+              <?php foreach ($data1 as $row) :?>
+                <option value=""><?= $row['namaLayanan'] ?></option>
+                <?php endforeach; ?>
+              </select> 
             </div>
 
             <div class="input-field">
@@ -69,7 +68,7 @@ require_once "view/headeradmin.php";
               <tr>
                 <th scope="row">Brosur</th>
                 <td>Rp.6000</td>
-                <td><input type="number"></td>
+                <td><center><p>6</p></center></td>
                 <td>Rp.30000</td>
                 <td><button class="btn btn-danger">hapus</button></td>
               </tr>
