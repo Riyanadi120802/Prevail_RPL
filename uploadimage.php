@@ -18,7 +18,7 @@
 
 <body>
     <input type="file" id="photo" /></br>
-    <button id="upload" onclick="uploadImage()">Upload Image</button>
+    <button id="upload" onshow="uploadImage()">Upload Image</button>
 </body>
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
