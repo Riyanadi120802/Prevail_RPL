@@ -56,8 +56,8 @@
             <ul class="logout-mode">
                 <li>
                     <a href="logout.php">
-                        <i class="uil uil-signout"></i>
-                        <span class="link-name">Logout <br> <?= $_SESSION['user']; ?></span>
+                        <br><i class="uil uil-signout"></i>
+                        <span class="link-name">Logout <br> <p style="font-size: 14px;"> Hallo, <b><?= $_SESSION['user']; ?></b></p></span>
                     </a>
                 </li>
 
