@@ -20,33 +20,17 @@ require_once "view/headeradmin.php";
                 </tr>
             </thead>
             <tbody>
-                <tr nowrap>
-                    <th scope="row">Brosur</th>
-                    <td>Rp.100000</td>
-                    <td>Ovo</td>
-                    <td>
-                        <div class="status">working</div>
-                    </td>
-                    <td><a href="#" class="btn btn-primary">Testimoni</a></td>
-                </tr>
-                <tr nowrap>
-                    <th scope="row">Kalender</th>
-                    <td>Rp.200000</td>
-                    <td>Ovo</td>
-                    <td>
-                        <div class="status">working</div>
-                    </td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr nowrap>
-                    <th scope="row">Kartu Nama</th>
-                    <td>Rp.75000</td>
-                    <td>Ovo</td>
-                    <td>
-                        <div class="status">working</div>
-                    </td>
-                    <td>&nbsp;</td>
-                </tr>
+                    <?php for ($i=1; $i<=3 ; $i++) : ?> 
+                        <tr nowrap>
+                        <th scope="row">Brosur</th>
+                        <td>Rp.100000</td>
+                        <td>Ovo</td>
+                        <td>
+                            <div class="status">working</div>
+                        </td>
+                        <td><a href="#" class="btn btn-primary">Testimoni</a></td>
+                        </tr>
+                    <?php endfor ?>
             </tbody>
         </table>
 
