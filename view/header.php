@@ -36,8 +36,8 @@
 
     <div class="container">
         <div class="row">
-            <div class="col" id="element1">
-                <svg width="500px" height="100vh" viewBox="0 0 541 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div class="col-6">
+                <svg width="400px" height="100vh" viewBox="0 0 541 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 0H441C496.228 0 541 44.7715 541 100V524C541 800.142 317.142 1024 41 1024H0V0Z" fill="url(#paint0_linear_31_3)" />
                     <defs>
                         <linearGradient id="paint0_linear_31_3" x1="0" y1="0" x2="600.632" y2="438.027" gradientUnits="userSpaceOnUse">
