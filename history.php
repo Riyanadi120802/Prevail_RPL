@@ -3,6 +3,16 @@ require_once "core/init.php";
 
 require_once "view/headeradmin.php";
 
+if (isset($_POST['submit'])){
+    $db = new firebaseRDB($databaseURL);
+    $testimoni = $_POST['testimoni'];
+
+    $insert = $db->insert("testimoni", [
+        'kalimat' => $testimoni,
+        'nama' => $_SESSION['user'],
+        'tanggal' => date('Y-m-d H:i:s')
+    ]);
+}
 ?>
 
 <!-- Jarak -->
@@ -38,16 +48,19 @@ require_once "view/headeradmin.php";
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5 mx-auto" id="exampleModalLabel">Mengisi Testimoni</h1>
-        </div>
-        <div class="modal-body container-fluid">
-            <textarea class="form-control" name="testimoni" id="#testi" cols="30" rows="10"></textarea>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-            <button type="button" class="btn btn-primary">Kirim</button>
-        </div>
+        <form action="history.php" method="post">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 mx-auto" id="exampleModalLabel">Mengisi Testimoni</h1>
+            </div>
+            <div class="modal-body container-fluid">
+                <textarea class="form-control" name="testimoni" id="#testi" cols="30" rows="10"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                <input type="submit" class="btn btn-success" name="submit" id="submit" placeholder="Kirim">
+                <!-- <button type="button" class="btn btn-primary" id="submit">Kirim</button> -->
+            </div>
+        </form>
         </div>
     </div>
     </div>
