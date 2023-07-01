@@ -9,6 +9,7 @@
             margin-left: 450px;
         }
     </style>
+    <script src="/mine/functions/script.js"></script>
 </head>
 
 <body>
@@ -72,7 +73,6 @@
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
         });
     }
-
 
     const errorMsgElement = document.querySelector('span#errorMsg');
 </script>

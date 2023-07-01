@@ -8,18 +8,18 @@ if (isset($_POST['submit'])) {
   $db = new firebaseRDB($databaseURL);
   $namaLayanan = $_POST['namaLayanan'];
   $jumlah = $_POST['jumlah'];
-  $uploadDokumen = $_POST['uploadDokumen'];
+  $uploadDokumen = $_SESSION['user'] . "_" . date_format($date, "H:i:s, d-m-Y");
   $nama = $_SESSION['user'];
 
-  $insert = $db->insert("temp_cart " . $_SESSION['user'], [
+  $insert = $db->insert("temp/temp_cart " . $_SESSION['user'], [
     'namaLayanan' => $namaLayanan,
     'jumlah' => $jumlah,
     'uploadDokumen' => $uploadDokumen,
     'nama' => $nama,
+    'harga' => 30000,
     'timestamp' => date_format($date, "H:i:s, d-m-Y")
   ]);
-
-  echo "Pesanan masuk ke keranjang";
+  header("Location:order.php");
 }
 
 ?>
@@ -35,11 +35,10 @@ if (isset($_POST['submit'])) {
 
             <div class="input-field">
               <label>Jenis Layanan</label>
-              <select class="form-select" id="jenis_layanan" name="jenis_layanan" required>
-                <option value="">Pilih Jenis Layanan</option>
-                <option value="brosur">Brosur</option>
-                <option value="mmt">MMT</option>
-                <option value="kop_surat">Kop Surat</option>
+              <select name="namaLayanan" class="form-select" id="jenis_layanan" required>
+                <?php foreach ($data1 as $row) : ?>
+                  <option value="<?= $row['namaLayanan'] ?>" id="namaLayanan"><?= $row['namaLayanan'] ?></option>
+                <?php endforeach; ?>
               </select>
             </div>
 
@@ -49,8 +48,9 @@ if (isset($_POST['submit'])) {
             </div>
 
             <div class="input-field" id="khas">
-              <label for="upload_dokumen" class="form-label">Upload Dokumen</label>
-              <input onchange="uploadImage()" type="file" class="upload" id="photo" name="uploadDokumen" required />
+              <label id="status"></label>
+              <progress style="margin-bottom: 6px;" class="progress-bar" id="progressBar" value="0" max="100"></progress>
+              <input style="width: -webkit-fill-available;" type="file" id="photo" onchange="uploadImage()" accept="image/jpeg, image/png" name="uploadDokumen" />
             </div>
           </div>
         </div>
@@ -60,9 +60,10 @@ if (isset($_POST['submit'])) {
           <input type="submit" class="form-control btn btn-success" name="submit" id="upload" placeholder="SUBMIT">
         </div>
 
-        <!-- <input type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Keranjang
-        </input> -->
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Kera Njang
+        </button>
 
       </div>
     </form>
@@ -82,30 +83,34 @@ if (isset($_POST['submit'])) {
           <thead>
             <tr class="table table-light">
               <th scope="col">Produk</th>
-              <th scope="col">Harga Satuan</th>
               <th scope="col">Kuantitas</th>
               <th scope="col">Total Harga</th>
               <th scope="col">Aksi</th>
             </tr>
           </thead>
           <tbody>
-
-            <?php for ($i = 0; $i < 3; $i++) : ?>
-              <tr>
-                <th scope="row">Brosur</th>
-                <td>Rp.6000</td>
-                <td><input type="number"></td>
-                <td>Rp.30000</td>
-                <td><button class="btn btn-danger">hapus</button></td>
-              </tr>
-            <?php endfor ?>
+            <?php foreach ($data4 as $key => $value) :
+                if ($key == "temp_cart " . $_SESSION['user']) {
+                  foreach ($value as $row => $row2) : ?>
+                    <tr>
+                      <td><?= $row2["namaLayanan"] ?></td>
+                      <td>
+                        <p><?= $row2["jumlah"] ?></p>
+                      </td>
+                      <td><?= $row2["jumlah"] * $row2["harga"] ?></td>
+                      <td><a class="btn btn-danger" id="btn-hapus" href="deleteOrder.php?id=<?= $row ?>">hapus</a></td>
+                    </tr>
+            <?php
+                  endforeach;
+                }
+              endforeach; ?>
 
           </tbody>
         </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">pesan lagi</button>
-        <button type="button" class="btn btn-primary">checkout</button>
+        <a href="bayar.php" class="btn btn-primary">checkout</a>
+        <!-- <button type="button" class="btn btn-primary">checkout</button> -->
       </div>
     </div>
   </div>
@@ -114,10 +119,10 @@ if (isset($_POST['submit'])) {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
-<script src="../js/script.js"></script>
 
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
+
 <script>
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
@@ -136,21 +141,40 @@ if (isset($_POST['submit'])) {
   console.log(firebase);
 
   function uploadImage() {
-    const ref = firebase.storage().ref("dokumen_pelanggan/");
+    const ref = firebase.storage().ref("dokumen_pelanggan/<?= $_SESSION['user'] ?>");
     const file = document.querySelector("#photo").files[0];
-    const name = +file.name;
+    const name = "<?= $_SESSION['user'] . "_" . date_format($date, "H:i:s, d-m-Y") ?>";
     const metadata = {
-      contentType: file.type
+      contentType: "image/jpeg"
     };
     const task = ref.child(name).put(file, metadata);
     task
-      .then(snapshot => snapshot.ref.getDownloadURL())
-      .then(url => {
-        console.log(url);
-        alert('image uploaded successfully');
-        document.querySelector("#image").src = url;
-      })
-      .catch(console.error);
+      .then(function(snapshot) {
+        document.getElementById("progressBar").style.display = "none";
+        document.getElementById("status").innerHTML = "Uploaded";
+        var url = snapshot.ref.getDownloadURL();
+      });
+
+    task.on('state_changed', function(snapshot) {
+      // Observe state change events such as progress, pause, and resume
+      // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+      var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      document.getElementById("progressBar").value = Math.round(progress);
+      // document.getElementById("loaded_n_total").innerHTML = Math.round(progress) + "% uploaded...please wait ";
+      switch (snapshot.state) {
+        case firebase.storage.TaskState.PAUSED: // or 'paused'
+          console.log('Upload is paused');
+          break;
+        case firebase.storage.TaskState.RUNNING: // or 'running'
+          console.log('Upload is running');
+          break;
+      }
+    }, function(error) {
+      // Handle unsuccessful uploads
+    }, function() {
+      // Handle successful uploads on complete
+      // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+    });
   }
 
   const errorMsgElement = document.querySelector('span#errorMsg');
