@@ -35,10 +35,11 @@ if (isset($_POST['submit'])) {
 
             <div class="input-field">
               <label>Jenis Layanan</label>
-              <select name="namaLayanan" class="form-select" id="jenis_layanan" required>
-                <?php foreach ($data1 as $row) : ?>
-                  <option value="<?= $row['namaLayanan'] ?>" id="namaLayanan"><?= $row['namaLayanan'] ?></option>
-                <?php endforeach; ?>
+              <select class="form-select" id="jenis_layanan" name="jenis_layanan" required>
+                <option value="">Pilih Jenis Layanan</option>
+                <option value="brosur">Brosur</option>
+                <option value="mmt">MMT</option>
+                <option value="kop_surat">Kop Surat</option>
               </select>
             </div>
 
@@ -93,11 +94,7 @@ if (isset($_POST['submit'])) {
               <tr>
                 <th scope="row">Brosur</th>
                 <td>Rp.6000</td>
-                <td>
-                  <center>
-                    <p>6</p>
-                  </center>
-                </td>
+                <td><input type="number"></td>
                 <td>Rp.30000</td>
                 <td><button class="btn btn-danger">hapus</button></td>
               </tr>
