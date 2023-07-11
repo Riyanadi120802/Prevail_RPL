@@ -3,11 +3,7 @@ require_once "core/init.php";
 
 require_once "view/headeradmin.php";
 
-<<<<<<< HEAD
 if (isset($_POST['submit'])){
-=======
-if (isset($_POST['submit'])) {
->>>>>>> d266158dfb71ec15b4b48bab24bec1920fd94be9
     $db = new firebaseRDB($databaseURL);
     $testimoni = $_POST['testimoni'];
 
@@ -34,7 +30,6 @@ if (isset($_POST['submit'])) {
                 </tr>
             </thead>
             <tbody>
-<<<<<<< HEAD
                     <?php for ($i=1; $i<=3 ; $i++) : ?> 
                         <tr nowrap>
                             <th scope="row">Brosur</th>
@@ -46,30 +41,11 @@ if (isset($_POST['submit'])) {
                             <td><button type="button" class="btn btn-primary mx-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">Testimoni</button></td>
                         </tr>
                     <?php endfor ?>
-=======
-                <?php foreach ($data5 as $key => $value) :
-                    if ($key == "status " . $_SESSION['user']) {
-                        foreach ($value as $row => $row2) : ?>
-                            <tr>
-                                <td><?= $row2["namaLayanan"] ?></td>
-                                <td>
-                                    <p><?= $row2["harga"] ?></p>
-                                </td>
-                                <td><?= $row2["metode"] ?></td>
-                                <td class=status><?= $row2["status"] ?></td>
-                                <td><button type="button" class="btn btn-primary mx-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">Testimoni</button></td>
-                            </tr>
-                <?php
-                        endforeach;
-                    }
-                endforeach; ?>
->>>>>>> d266158dfb71ec15b4b48bab24bec1920fd94be9
             </tbody>
         </table>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<<<<<<< HEAD
     <div class="modal-dialog">
         <div class="modal-content">
         <form action="history.php" method="post">
@@ -88,26 +64,6 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
     </div>
-=======
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form action="history.php" method="post">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5 mx-auto" id="exampleModalLabel">Mengisi Testimoni</h1>
-                    </div>
-                    <div class="modal-body container-fluid">
-                        <textarea class="form-control" name="testimoni" id="#testi" cols="30" rows="10"></textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                        <input type="submit" class="btn btn-success" name="submit" id="submit" placeholder="Kirim">
-                        <!-- <button type="button" class="btn btn-primary" id="submit">Kirim</button> -->
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
->>>>>>> d266158dfb71ec15b4b48bab24bec1920fd94be9
 </section>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>

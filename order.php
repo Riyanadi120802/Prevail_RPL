@@ -28,42 +28,22 @@ if (isset($_POST['submit'])) {
 <section class="dashboard">
   <div class="dash-content">
     <header style="font-size: 26px; font-weight: bold; color: blueviolet; ">Order Here</header>
-<<<<<<< HEAD
-    <form action="post">
-=======
     <form action="order.php" method="post">
->>>>>>> d266158dfb71ec15b4b48bab24bec1920fd94be9
       <div class="form first">
         <div class="details personal">
           <div class="fields">
 
             <div class="input-field">
               <label>Jenis Layanan</label>
-<<<<<<< HEAD
-              <select class="form-select" id="jenis_layanan" name="jenis_layanan" required>
-              <?php foreach ($data1 as $row) :?>
-                <option value=""><?= $row['namaLayanan'] ?></option>
-                <?php endforeach; ?>
-              </select> 
-=======
               <select name="namaLayanan" class="form-select" id="jenis_layanan" required>
                 <?php foreach ($data1 as $row) : ?>
                   <option value="<?= $row['namaLayanan'] ?>" id="namaLayanan"><?= $row['namaLayanan'] ?></option>
                 <?php endforeach; ?>
               </select>
->>>>>>> d266158dfb71ec15b4b48bab24bec1920fd94be9
             </div>
 
             <div class="input-field">
               <label>Jumlah</label>
-<<<<<<< HEAD
-              <input type="number" placeholder="Masukkan Jumlah" required />
-            </div>
-
-            <div class="input-field" id="khas">
-              <label for="upload_dokumen" class="form-label">Upload Dokumen</label>
-              <input type="file" class="upload" id="upload_dokumen" name="upload_dokumen" required />
-=======
               <input type="number" placeholder="Masukkan Jumlah" name="jumlah" required/>
             </div>
 
@@ -71,16 +51,11 @@ if (isset($_POST['submit'])) {
               <label id="status"></label>
               <progress style="margin-bottom: 6px;" class="progress-bar" id="progressBar" value="0" max="100"></progress>
               <input style="width: -webkit-fill-available;" type="file" id="photo" onchange="uploadImage()" accept="image/jpeg, image/png" name="uploadDokumen" />
->>>>>>> d266158dfb71ec15b4b48bab24bec1920fd94be9
             </div>
           </div>
         </div>
 
         <!-- Button trigger modal -->
-<<<<<<< HEAD
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          lanjut
-=======
         <div class="form-group input-group mb-3" id="login-btn">
           <input type="submit" class="form-control btn btn-success" name="submit" id="upload" placeholder="SUBMIT">
         </div>
@@ -88,7 +63,6 @@ if (isset($_POST['submit'])) {
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="keranjang">
           Keranjang
->>>>>>> d266158dfb71ec15b4b48bab24bec1920fd94be9
         </button>
 
       </div>
@@ -105,36 +79,6 @@ if (isset($_POST['submit'])) {
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-<<<<<<< HEAD
-      <table class="table table-hover w-50 m-auto mt-5">
-            <thead>
-                <tr class="table table-light">
-                    <th scope="col">Produk</th>
-                    <th scope="col">Harga Satuan</th>
-                    <th scope="col">Kuantitas</th>
-                    <th scope="col">Total Harga</th>
-                    <th scope="col">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-
-            <?php for ($i=0; $i <3 ; $i++): ?>
-              <tr>
-                <th scope="row">Brosur</th>
-                <td>Rp.6000</td>
-                <td><center><p>6</p></center></td>
-                <td>Rp.30000</td>
-                <td><button class="btn btn-danger">hapus</button></td>
-              </tr>
-            <?php endfor ?>
-                
-            </tbody>
-        </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">pesan lagi</button>
-        <button type="button" class="btn btn-primary">checkout</button>
-=======
         <table class="table table-hover w-50 m-auto mt-5">
           <thead>
             <tr class="table table-light">
@@ -166,7 +110,6 @@ if (isset($_POST['submit'])) {
       <div class="modal-footer">
         <a href="bayar.php" class="btn btn-primary">checkout</a>
         <!-- <button type="button" class="btn btn-primary">checkout</button> -->
->>>>>>> d266158dfb71ec15b4b48bab24bec1920fd94be9
       </div>
     </div>
   </div>
@@ -175,10 +118,6 @@ if (isset($_POST['submit'])) {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
-<<<<<<< HEAD
-<script src="../js/script.js"></script>
-</body>
-=======
 
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
@@ -242,5 +181,4 @@ if (isset($_POST['submit'])) {
 
 </body>
 
->>>>>>> d266158dfb71ec15b4b48bab24bec1920fd94be9
 </html>
