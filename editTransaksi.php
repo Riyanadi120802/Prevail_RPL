@@ -19,7 +19,7 @@ $data = json_decode($retrieve, 1);
                     <input type="text" class="form-control" name="name" id="name" placeholder="Name" aria-label="email" aria-describedby="basic-addon2" required>
                 </div> -->
                 <tr>
-                    <td>Nama</td>
+                    <td>User</td>
                     <td><input type="text" class="form-control" name="namaLayanan" value="<?php echo $data['namaLayanan'] ?>"></td>
                 </tr>
                 <tr>
