@@ -7,8 +7,6 @@ $Option = array(
     ),
 );
 
-$databaseURL = "https://restapiprevail-default-rtdb.firebaseio.com";
-
 // Tiga link API JSON
 $link1 = "https://restapiprevail-default-rtdb.firebaseio.com/layanan.json";
 $link2 = "https://restapiprevail-default-rtdb.firebaseio.com/testimoni.json";
@@ -46,6 +44,8 @@ $data5 = json_decode($dataApi5, true);
 // echo "<pre>";
 // print_r($data3);
 // echo "</pre>";
+
+$databaseURL = "https://restapiprevail-default-rtdb.firebaseio.com";
 
 class firebaseRDB
 {

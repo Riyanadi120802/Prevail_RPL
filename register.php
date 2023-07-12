@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
                     <input type="password" class="form-control" name="password" id="password" placeholder="Password" aria-label="email" aria-describedby="basic-addon2" required>
                 </div>
                 <div class="form-group input-group mb-3" id="login-btn">
-                    <input type="submit" class="form-control btn btn-success" name="submit" id="submit" placeholder="SUBMIT">
+                    <input type="submit" class="form-control btn btn-success" name="submit" id="submit">
                 </div>
                 <div>
                     <center>Sudah Punya Akun? <a href="index.php">Login</a></center>

@@ -6,17 +6,24 @@ $date = date_create("Asia/Jakarta");
 
 if (isset($_POST['submit'])) {
   $db = new firebaseRDB($databaseURL);
+
+  foreach ($data1 as $row) :
+    if ($_POST['namaLayanan'] == $row['namaLayanan']) $harga = $row['harga'];
+  endforeach;
+
   $namaLayanan = $_POST['namaLayanan'];
   $jumlah = $_POST['jumlah'];
   $uploadDokumen = $_SESSION['user'] . "_" . date_format($date, "H:i:s, d-m-Y");
   $nama = $_SESSION['user'];
+
+  
 
   $insert = $db->insert("temp/temp_cart " . $_SESSION['user'], [
     'namaLayanan' => $namaLayanan,
     'jumlah' => $jumlah,
     'uploadDokumen' => $uploadDokumen,
     'nama' => $nama,
-    'harga' => 30000,
+    'harga' => $harga,
     'timestamp' => date_format($date, "H:i:s, d-m-Y")
   ]);
   return header("Location:order.php");
@@ -44,7 +51,7 @@ if (isset($_POST['submit'])) {
 
             <div class="input-field">
               <label>Jumlah</label>
-              <input type="number" placeholder="Masukkan Jumlah" name="jumlah" required/>
+              <input type="number" placeholder="Masukkan Jumlah" name="jumlah" required />
             </div>
 
             <div class="input-field" id="khas">
@@ -90,20 +97,20 @@ if (isset($_POST['submit'])) {
           </thead>
           <tbody>
             <?php foreach ($data4 as $key => $value) :
-                if ($key == "temp_cart " . $_SESSION['user']) {
-                  foreach ($value as $row => $row2) : ?>
-                    <tr>
-                      <td><?= $row2["namaLayanan"] ?></td>
-                      <td>
-                        <p><?= $row2["jumlah"] ?></p>
-                      </td>
-                      <td><?= $row2["jumlah"] * $row2["harga"] ?></td>
-                      <td><a class="btn btn-danger" id="btn-hapus" href="deleteOrder.php?id=<?= $row ?>">hapus</a></td>
-                    </tr>
+              if ($key == "temp_cart " . $_SESSION['user']) {
+                foreach ($value as $row => $row2) : ?>
+                  <tr>
+                    <td><?= $row2["namaLayanan"] ?></td>
+                    <td>
+                      <p><?= $row2["jumlah"] ?></p>
+                    </td>
+                    <td><?= $row2["jumlah"] * $row2["harga"] ?></td>
+                    <td><a class="btn btn-danger" id="btn-hapus" href="deleteOrder.php?id=<?= $row ?>">hapus</a></td>
+                  </tr>
             <?php
-                  endforeach;
-                }
-              endforeach; ?>
+                endforeach;
+              }
+            endforeach; ?>
           </tbody>
         </table>
       </div>
